@@ -15,6 +15,7 @@ Express: Framework to support backend
 <li> Run npm install to run dependencies installations from package.json file </li>
 <li> Run npm runs start to run the project </li>
 <li> Note 
+	<pre>
 		The .env file contains configuation properties like database 
 		PORT =  port at which the project binds
 		dbHost = database host 
@@ -23,7 +24,7 @@ Express: Framework to support backend
 		SECRET_JWT = json signing secret key
 		EXPIRY = json token expiry
 		
-		change the properties to ur need 
+	</pre>
 </li>
 </ul>
 
