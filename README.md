@@ -101,8 +101,9 @@ the Customer data filter endpoint dynamically builds statement using the passed 
 In addition to the fields above u can also use limit to set number of results retrieved as response 
 	
 
-Sample CURL REQUESTS:
+<h3>Sample CURL REQUESTS:</h3>
 	<h3>1 Register Customer Details (https://localhost:3000/api/v1/auth/Register)</h3>
+	(change --data-urlencode values to alter field values)
 		<pre>
 			curl --location --request POST 'http://localhost:3000/api/v1/auth/Register' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -114,5 +115,38 @@ Sample CURL REQUESTS:
 --data-urlencode 'ProfileImage=image' \
 --data-urlencode 'PanNumber=ABCDE1234b'
 		</pre>
+
+<h3>2 Login To Recieve Token (https://localhost:3000/api/v1/auth/Login)</h3>
+	PanNumber and DOB are parameters Required to Login (change --data-urlencode values )
+	<pre>
+		curl --location --request POST 'http://localhost:3000/api/v1/auth/Login' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYW4iOiJBQkNERTEyMzRGIiwiRE9CIjoiMTk5NS0xMi0xMVQxODozMDowMC4wMDBaIiwiaWQiOjEsImlhdCI6MTYwNDMyMzc2OCwiZXhwIjoxNjA0MzI0MzY4fQ.qJwi5y0S76s9zLorjy_LxcrQmxITurOP1fqLyMEQAcA' \
+--data-urlencode 'PanNumber=ABCDE1234F' \
+--data-urlencode 'DOB=95/12/12'
+	</pre>
+
+
+
+<h3>2 Filter Customer Details  (https://localhost:3000/api/v1/Authorize/customer)</h3>
+	Use combination of fields to filter data rows (change --data-urlencode values )
+	Use Valid Bearer Token (replace value after Bearer in --header)
+	<h4> Filter using Gender and pan number </h4>
+	<pre>curl --location --request GET 'http://localhost:3000/api/v1/Authorize/customer/' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYW4iOiJBQkNERTEyMzRGIiwiRE9CIjoiMTk5NS0xMi0xMVQxODozMDowMC4wMDBaIiwiaWQiOjEsImlhdCI6MTYwNDMyMzc2OCwiZXhwIjoxNjA0MzI0MzY4fQ.qJwi5y0S76s9zLorjy_LxcrQmxITurOP1fqLyMEQAcA' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYW4iOiJBQkNERTEyMzRGIiwiRE9CIjoiMTk5NS0xMi0xMVQxODozMDowMC4wMDBaIiwiaWQiOjEsImlhdCI6MTYwNDMyMzc2OCwiZXhwIjoxNjA0MzI0MzY4fQ.qJwi5y0S76s9zLorjy_LxcrQmxITurOP1fqLyMEQAcA' \
+--data-urlencode 'Gender=Female' \
+--data-urlencode 'limit=10' \
+--data-urlencode 'PanNumber=ABCDE1234F'
+	</pre>
 	
+<h4>Filter using Gender</h4>
+<pre>
+curl --location --request GET 'http://localhost:3000/api/v1/Authorize/customer/' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYW4iOiJBQkNERTEyMzRGIiwiRE9CIjoiMTk5NS0xMi0xMVQxODozMDowMC4wMDBaIiwiaWQiOjEsImlhdCI6MTYwNDMyMzc2OCwiZXhwIjoxNjA0MzI0MzY4fQ.qJwi5y0S76s9zLorjy_LxcrQmxITurOP1fqLyMEQAcA' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'Gender=Female' \
+--data-urlencode 'limit=10'
+</pre>
 
