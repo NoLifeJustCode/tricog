@@ -23,7 +23,6 @@ Express: Framework to support backend
 		dbPassword = database password
 		SECRET_JWT = json signing secret key
 		EXPIRY = json token expiry
-		
 	</pre>
 </li>
 </ul>
@@ -44,9 +43,10 @@ Express: Framework to support backend
 
 3.<h4><code> /Authorize/customer/</code></h4>
 	Method:GET 
-	content-Type: application/x-www-form-urlencoded 
-	params:
-				dynamically filters results based on paramters passed 
+	content-Type: application/x-www-form-urlencoded
+	Authorization : Bearer Token
+	params:	Use any combination of fields specified below to filter customer details as response 
+				
 
 
 
@@ -91,14 +91,14 @@ const fields={
     }
 }
 	</pre>
-	
 
 
-	On login a signed jwt token is sent as response and on Register a sucessfull registeration message is recieved as response else appropriate errors 
-	
-	
-	the Customer data filter endpoint dynamically builds statement using the passed field after validation 
-	In addition to the fields above u can also use limit to set number of results retrieved as response 
+
+On login a signed jwt token is sent as response and on Register a sucessfull registeration message is recieved as response else appropriate errors 
+
+
+the Customer data filter endpoint dynamically builds statement using the passed field after validation 
+In addition to the fields above u can also use limit to set number of results retrieved as response 
 	
 
 Sample CURL REQUESTS:
