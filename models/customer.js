@@ -89,7 +89,9 @@ class CustomerService{
         return results.affectedRows;
         }catch(e){
             console.log(e);
-            return{ statusCode:500,error:"internal server error" };
+            if(e.code == "ER_DUP_ENTRY")
+                return {statusCode:e.errno,errors:"Pan Number already exists"};
+            return{ statusCode:500,errors:"internal server error" };
         }
     }
     static async queryObj(){
@@ -100,14 +102,14 @@ class CustomerService{
         try{
         email=fields.Email.processData(email);
         if(fields.Email.validator && !fields.Email.validator(email))
-            return {error:"invalid email "};
+            return {errors:"invalid email "};
         const query = await  CustomerService.queryObj();
         await query('use tricog');
         const results = await query(`select * from customer where email = "${email}"`);    
         return results;
     }catch(e){
         console.log(e);
-        return{ statusCode:500,error:"internal server error" };
+        return{ statusCode:500,errors:"internal server error" };
     }
     }
     static async findOneByPanAndDOB(PanNumber,DOB){
@@ -115,16 +117,16 @@ class CustomerService{
             PanNumber = PanNumber.replace('"',"").replace('"',"");
             DOB = DOB.replace('"',"").replace('"',"");
             if(fields.PanNumber.validator && !fields.PanNumber.validator(PanNumber))
-                return {error:"invalid PanNumber "};
+                return {errors:"invalid PanNumber "};
             if(fields.DOB.validator && !fields.DOB.validator(DOB))
-            return {error:"invalid DOB format "};
+            return {errors:"invalid DOB format "};
             const query = await  CustomerService.queryObj();
             await query('use tricog');
             const results = await query(`select * from customer where PanNumber = "${PanNumber}" AND DOB ="${DOB}" limit 1`);    
             return results[0];
         }catch(e){
         console.log(e);
-        return{ statusCode:500,error:"internal server error" };
+        return{ statusCode:500,errors:"internal server error" };
     }
     }
     static async findOneByEmail(Email){
@@ -132,14 +134,14 @@ class CustomerService{
             Email = Email.replace('"',"").replace('"',"");
             
             if(fields.Email.validator && !fields.Email.validator(Email))
-                return {error:"invalid Email "};
+                return {errors:"invalid Email "};
             const query = await  CustomerService.queryObj();
             await query('use tricog');
             const results = await query(`select * from customer where Email = "${Email}"  limit 1`);    
             return results[0];
         }catch(e){
         console.log(e);
-        return{ statusCode:500,error:"internal server error" };
+        return{ statusCode:500,errors:"internal server error" };
     }
     }
    static async customerByFilter(filter){
@@ -153,7 +155,7 @@ class CustomerService{
         return results;
        }catch(e){
         console.log(e);
-        return{ statusCode:500,error:"internal server error" }; 
+        return{ statusCode:500,errors:"internal server error" }; 
        }
    }
 }

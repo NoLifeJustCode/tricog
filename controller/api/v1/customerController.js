@@ -14,11 +14,12 @@ module.exports.Register=async function(req,res,mysql){
     try{
         const results = await customer.CustomerService.addData(req.body,mysql);
         if(results.errors || !results)
-            return res.send(results.statusCode||500,results.errors||"internalServerError");
+            return res.send(422,results.errors||"internalServerError");
         return res.send(200,{
             message:'Registeration Successfull!!',
         })    
     }catch(err){
+        console.log(err);
         return res.send(504,{message:err.message})
     }
 
@@ -31,11 +32,11 @@ module.exports.Register=async function(req,res,mysql){
 module.exports.Login=async function(req,res){
     try{    //console.log(req.body)
             var customerData=await customer.CustomerService.findOneByPanAndDOB(req.body.PanNumber,req.body.DOB);
-            if(!customerData)
+            if(!customerData||customerData.errors)
                 return res.send(422,{
-                    message:'Invalid Credentials'
+                    message:customerData.errors || 'Invalid Credentials'
                 })
-           
+            
             const data={
                 pan:customerData.PanNumber,
                 DOB:customerData.DOB,
@@ -62,9 +63,9 @@ module.exports.getCustomer =  async function(req,res){
     try{
         const filter=customer.CustomerService.getFilter(req.body);
         var customerData = await customer.CustomerService.customerByFilter(filter);
-            if(!customerData)
+            if(!customerData||!Array.isArray(customerData))
                 return res.send(422,{
-                    message:'Invalid Credentials'
+                    message:customerData.errors||'Invalid Credentials'
                 })
         const data=[];
         for(let item of customerData){

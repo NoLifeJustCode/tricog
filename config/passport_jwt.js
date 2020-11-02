@@ -17,9 +17,9 @@ const opts={
 }
 passport.use("customer",new jwtStratergy(opts,async (docData,done )=>{
     try{        
-                console.log(JSON.stringify(docData));
+                
                 var doc=await customer.CustomerService.findOneByPanAndDOB(docData.pan,docData.DOB);
-              //  console.log(doc)
+           
                 if(!doc)
                     return done(null,false)
                 return done(null,doc)

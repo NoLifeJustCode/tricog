@@ -7,10 +7,7 @@ const passport=require('passport')
 const { route } = require('./Authorize/customer')
 const router=express.Router()
 //secured Route to customer Related Actions
-router.use((req,res,next)=>{
-    console.log(req.headers)
-    next();
-})
+
 router.use('/Authorize/customer',passport.authenticate("customer",{session:false}),require('./Authorize/customer'))
 
 
