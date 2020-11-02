@@ -108,7 +108,7 @@ In addition to the fields above u can also use limit to set number of results re
 	
 
 <h3>Sample CURL REQUESTS:</h3>
-	<h3>1 Register Customer Details (https://localhost:3000/api/v1/auth/Register)</h3>
+	<h3>1 Register Customer Details (http://localhost:3000/api/v1/auth/Register)</h3>
 	(change --data-urlencode values to alter field values)
 		<pre>
 			curl --location --request POST 'http://localhost:3000/api/v1/auth/Register' \
@@ -122,7 +122,7 @@ In addition to the fields above u can also use limit to set number of results re
 --data-urlencode 'PanNumber=ABCDE1234b'
 		</pre>
 
-<h3>2 Login To Recieve Token (https://localhost:3000/api/v1/auth/Login)</h3>
+<h3>2 Login To Recieve Token (http://localhost:3000/api/v1/auth/Login)</h3>
 	PanNumber and DOB are parameters Required to Login (change --data-urlencode values )
 	<pre>
 		curl --location --request POST 'http://localhost:3000/api/v1/auth/Login' \
@@ -134,7 +134,7 @@ In addition to the fields above u can also use limit to set number of results re
 
 
 
-<h3>2 Filter Customer Details  (https://localhost:3000/api/v1/Authorize/customer)</h3>
+<h3>2 Filter Customer Details  (http://localhost:3000/api/v1/Authorize/customer)</h3>
 	Use combination of fields to filter data rows (change --data-urlencode values )
 	Use Valid Bearer Token (replace value after Bearer in --header)
 	<h4> Filter using Gender and pan number </h4>
