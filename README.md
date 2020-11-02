@@ -102,6 +102,17 @@ In addition to the fields above u can also use limit to set number of results re
 	
 
 Sample CURL REQUESTS:
-	
+	<h3>1 Register Customer Details (https://localhost:3000/api/v1/auth/Register)</h3>
+		<pre>
+			curl --location --request POST 'http://localhost:3000/api/v1/auth/Register' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYW4iOiJBQkNERTEyMzRGIiwiRE9CIjoiMTk5NS0xMi0xMVQxODozMDowMC4wMDBaIiwiaWQiOjEsImlhdCI6MTYwNDMyMzc2OCwiZXhwIjoxNjA0MzI0MzY4fQ.qJwi5y0S76s9zLorjy_LxcrQmxITurOP1fqLyMEQAcA' \
+--data-urlencode 'Email=a@a.com' \
+--data-urlencode 'Gender=female' \
+--data-urlencode 'FirstName=name' \
+--data-urlencode 'DOB=95/12/12' \
+--data-urlencode 'ProfileImage=image' \
+--data-urlencode 'PanNumber=ABCDE1234b'
+		</pre>
 	
 
