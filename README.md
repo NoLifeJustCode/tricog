@@ -150,3 +150,8 @@ curl --location --request GET 'http://localhost:3000/api/v1/Authorize/customer/'
 --data-urlencode 'limit=10'
 </pre>
 
+<h3>Formats of fields </h3>
+DOB: "YY/MM/DD" format and is required for login and registeration
+Email: basic email format (No existence validation done)
+Pan Number : 10 letter (5char 4Number 1char)
+Gender: Enum( male ,female)
