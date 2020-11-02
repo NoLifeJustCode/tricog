@@ -11,6 +11,12 @@ Express: Framework to support backend
 <h3> Installation and Setup </h3>
 <ul>
 <li> make sure npm ,node and mysql is previously installed. </li> 
+	<pre>
+		Resource Links for npm ,node and mysql
+		1. Mysql : https://dev.mysql.com/downloads/installer/
+		2. NPM : https://www.npmjs.com/get-npm (commands to update version)
+		3. Node :https://nodejs.org/en/download/
+	</pre>
 <li> open terminal and make sure pwd is the project foler </li>
 <li> Run npm install to run dependencies installations from package.json file </li>
 <li> Run npm runs start to run the project </li>
@@ -157,3 +163,5 @@ Email: basic email format (No existence validation done)
 Pan Number : 10 letter (5char 4Number 1char)
 Gender: Enum( male ,female)
 </pre>
+
+
